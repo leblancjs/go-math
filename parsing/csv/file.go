@@ -2,28 +2,25 @@ package csv
 
 type File [][]float64
 
-func (f *File) Row(idx int) []float64 {
-	return (*f)[idx]
+func (file File) Row(idx int) []float64 {
+	return file[idx]
 }
 
-func (f *File) Column(idx int) []float64 {
+func (file File) Column(idx int) []float64 {
 	values := make([]float64, 0, 0)
-	records := *f
-	for _, r := range records {
+	for _, r := range file {
 		values = append(values, r[idx])
 	}
 	return values
 }
 
-func (f *File) RowSize() int {
-	records := *f
-
-	rows := len(records)
+func (file File) RowSize() int {
+	rows := len(file)
 	if rows <= 0 {
 		return 0
 	}
 
-	rowSize := len(records[0])
+	rowSize := len(file[0])
 
 	return rowSize
 }

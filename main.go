@@ -8,17 +8,17 @@ import (
 )
 
 func main() {
-	p := csv.NewParser()
-	f, err := p.Parse("resources/log330_labo1_data.csv")
+	parser := csv.NewParser()
+	file, err := parser.Parse("resources/log330_labo1_data.csv")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	columnCount := f.RowSize()
+	columnCount := file.RowSize()
 	for i := 0; i < columnCount; i++ {
 		fmt.Println("Column ", i)
 
-		values := f.Column(i)
+		values := file.Column(i)
 
 		mean := stats.Mean(values)
 		variance := stats.Variance(values)
