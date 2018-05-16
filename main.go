@@ -1,24 +1,31 @@
 package main
 
 import (
-	"encoding/csv"
 	"fmt"
+	"github.com/leblancjs/log330-math-go/math/stats"
+	"github.com/leblancjs/log330-math-go/parsing/csv"
 	"log"
-	"os"
 )
 
 func main() {
-	f, err := os.Open("resources/log330_labo1_data.csv")
+	p := csv.NewParser()
+	f, err := p.Parse("resources/log330_labo1_data.csv")
 	if err != nil {
-		log.Fatal("Failed to open CSV")
-	}
-	defer f.Close()
-
-	r := csv.NewReader(f)
-	records, err := r.ReadAll()
-	if err != nil {
-		log.Fatal("Failed to read CSV")
+		log.Fatalln(err)
 	}
 
-	fmt.Println(records)
+	columnCount := f.RowSize()
+	for i := 0; i < columnCount; i++ {
+		fmt.Println("Column ", i)
+
+		values := f.Column(i)
+
+		mean := stats.Mean(values)
+		variance := stats.Variance(values)
+		stdDev := stats.StdDev(values)
+
+		fmt.Println("Mean: ", mean)
+		fmt.Println("Variance: ", variance)
+		fmt.Println("Standard Deviation: ", stdDev)
+	}
 }
