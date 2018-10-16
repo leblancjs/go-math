@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/leblancjs/log330-math-go/math/stats"
-	"github.com/leblancjs/log330-math-go/parsing/csv"
 	"log"
+
+	"github.com/leblancjs/go-math/math/stats"
+	"github.com/leblancjs/go-math/parsing/csv"
 )
 
 func main() {

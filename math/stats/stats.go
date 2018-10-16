@@ -1,8 +1,9 @@
 package stats
 
 import (
-	"github.com/leblancjs/log330-math-go/math"
 	math2 "math"
+
+	"github.com/leblancjs/go-math/math"
 )
 
 func Sum(values []float64) float64 {
